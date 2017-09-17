@@ -12,7 +12,7 @@ from a1q1 import AppointmentBook
 
 # retrieves the busiest date(s) in the appointment book
 def busiestDate(apptBook):
-    max_appts = 1
+    max_appts = 0
     busiest_dates = []
 
     for date in range(1,366):
