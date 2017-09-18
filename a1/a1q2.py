@@ -6,11 +6,29 @@
 ## ===========================================================================
 ##
 
-# TODO: design recipe
+# TODO: add tests
 
 from a1q1 import AppointmentBook
 
-# build appointment book by reading an appointment record file
+## buildApptBook(apptFile) builds an appointment book by reading an
+##      appointment record file
+## Effects: Reads from the file called apptFile
+##          Prints the results of a "Change" command on the outputted
+##              appointment book
+## buildApptBook: Str -> AppointmentBook
+## Requires: only one appointment record is on each line of apptFile
+##           each line in apptFile must start with one of (Make, Cancel, Change)
+##           each line in apptFile must be tab-delimited
+## Examples:
+##      If "appt.txt" is empty, then buildApptBook("appt.txt") returns an empty
+##          appointment book.
+##      If the given file "appointment.txt" is used, then
+##          buildApptBook("appointment.txt") returns an appointment book with
+##              the dictionary of appointments {(45,10.5): "meeting",
+##                                              (120,12): "discussion",
+##                                              (100,18): "consulting"}
+##          and prints the following to stdout:
+##              "There is no appointment at 15 at 80"
 def buildApptBook(apptFile):
     f = open(apptFile, 'r')
     appt_book = AppointmentBook()
