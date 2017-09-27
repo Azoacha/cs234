@@ -1,0 +1,27 @@
+##
+## ===========================================================================
+##  Azoacha Forcheh (20558994)
+##  CS 234 Fall 2017
+##  Assignment 01, Problem 4
+## ===========================================================================
+##
+
+# TODO: Add explanation and algo analysis.
+
+## Part (a) ##
+function has_duplicate(A, k):
+    arr <- merge_sort(A)
+    n <- length(A)
+    for i <- 0 to n:
+        if A[i] == A[i+1]:
+            return True
+    return False
+
+## Part (b) ##
+function has_duplicate(A, k):
+    lst <- [0] * k
+    for val in A:
+        lst[val] <- lst[val] + 1
+        if lst[val] > 1:
+            return True
+    return False
