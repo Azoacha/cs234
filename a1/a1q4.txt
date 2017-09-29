@@ -9,7 +9,7 @@
 # TODO: Add explanation and algo analysis.
 
 ## Part (a) ##
-function has_duplicate(A, k):
+function has_duplicate(A):
     arr <- merge_sort(A)
     n <- length(A)
     for i <- 0 to n:
@@ -18,7 +18,7 @@ function has_duplicate(A, k):
     return False
 
 ## Part (b) ##
-function has_duplicate(A, k):
+function has_duplicate(A):
     lst <- [0] * k
     for val in A:
         lst[val] <- lst[val] + 1

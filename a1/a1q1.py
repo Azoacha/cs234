@@ -25,6 +25,18 @@ class AppointmentBook:
     def __init__(self):
         self.appts = {}
 
+    # self == produces True if self and other are equal, and False otherwise
+    # __eq__ : AppointmentBook Any -> Bool
+    def __eq__(self, other):
+        return isinstance(other, AppointmentBook) and \
+            self.appts == other.appts
+
+    # self != produces True if self and other are not equal, and False
+    #   otherwise
+    # __ne__ : AppointmentBook Any -> Bool
+    def __ne__(self, other):
+        return not (self == other)
+
     # isAppointment(self, apptDate, apptTime) determines if an appointment
     #     exists for the date apptDate and time apptTime specified and returns
     #     True if there does, and False if there doesn't.
