@@ -1,5 +1,17 @@
 def delete_transaction(head_trans , m):
-    pass
+    trans_lst = []
+    curr_trans = head_trans
+    while curr_trans is not None:
+        trans_lst.append(curr_trans)
+        curr_trans = curr_trans.prev_trans
+
+    n = len(trans_lst)
+    txm = trans_lst[n-m]
+    txm_1 = trans_lst[n-m-1]
+    merch = txm.merchandise
+
+    txm_1.prev_trans = txm.prev_trans
+    return merch
 
 
 class Record:
@@ -28,3 +40,7 @@ class Record:
         return "({},{})".format(self.merchandise, self.time) + rest_of_list
 
 
+#tx1 = Record("apple", 1580, None)
+#tx2 = Record("banana", 2390, tx1)
+#tx3 = Record("carrot", 3452, tx2)
+#tx4 = Record("doll", 3789, tx3)
