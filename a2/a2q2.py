@@ -1,35 +1,66 @@
-# end <= n
-def leger_partition(leger_head, end_node):
-    if leger_head == None or leger_head.prev_trans == None:
-        return leger_head
+# TODO: Add design recipe
 
-    pivot = leger_head
+def swap(node1, node2):
+    tmp_time = node1.time
+    tmp_merch = node1.merchandise
 
-    old_trans = pivot
-    curr_trans = pivot.prev_trans
+    node1.time = node2.time
+    node1.merchandise = node2.merchandise
 
-    while curr_trans != end_node:
-        if curr_trans.time > pivot.time:
-            old_trans.prev_trans = curr_trans.prev_trans
-            curr_trans.prev_trans = leger_head
-            leger_head = curr_trans
-            curr_trans = old_trans.prev_trans
-        else:
-            old_trans = curr_trans
-            curr_trans = curr_trans.prev_trans
+    node2.time = tmp_time
+    node2.merchandise = tmp_merch
 
-    #print("Test: " + str(leger_head))
-    return leger_head
+# Returns true if node1 appears in list before node2,
+#   i.e. head -> ... -> node1 -> ... -> node2 -> ... -> None
+def appears_before(node1, node2):
+    if node2 == None:
+        return True
+    curr = node1
+    while curr != None:
+        if curr == node2:
+            return True
+        curr = curr.prev_trans
+    return False
 
-def quickSort(llist, end_node):
-    final_list = leger_partition(llist, None)
-    quickSort(end_node, None)
-    return quickSort(final_list, end_node)
+# Use leger_head as first and have to get end node to use as last for
+#   final call in quicksort
+# Returns node that appears before pivot
+def partition(first, last):
+    # Using last node for pivot since it has no tail nodes
+    # comp_node will be ahead of every node < pivot
+    pivot = last
+    comp_node = first
+    prev_node = comp_node
+    curr = first
+
+    while curr != pivot:
+        if curr.time >= pivot.time:
+            swap(comp_node, curr)
+            prev_node = comp_node
+            comp_node = comp_node.prev_trans
+        curr = curr.prev_trans
+    swap(comp_node, pivot)
+    return prev_node
+
+def recQuickSort(first, last):
+    if appears_before(last, first):
+        return
+    else:
+        # Not the true pivot, but the node before it i.e. node.prev_trans =
+        #   true pivot
+        pivot = partition(first, last)
+        recQuickSort(first, pivot)
+        recQuickSort(pivot.prev_trans, last)
 
 def leger_quickSort(leger_head):
-    pivot = leger_head
-    return quickSort(leger_partition(leger_head, None), pivot)
-
+    # set to head and not head.prev_trans to account for empty list
+    curr = leger_head
+    last = leger_head
+    while curr != None:
+        last = curr
+        curr = curr.prev_trans
+    recQuickSort(leger_head, last)
+    return leger_head
 
 class Record:
     def __init__(self, merchandise, time, prev):
@@ -57,9 +88,10 @@ class Record:
         return "({},{})".format(self.merchandise, self.time) + rest_of_list
 
 
-tx1 = Record("apple", 2580, None)
-tx2 = Record("banana", 4390, tx1)
-tx3 = Record("carrot", 3452, tx2)
-tx4 = Record("doll", 3789, tx3)
-print(str(tx4))
-print(str(leger_quickSort(tx4)))
+#tx1 = Record("apple", 5580, None)
+#tx2 = Record("banana", 1580, tx1)
+#tx3 = Record("carrot", 3452, tx2)
+#tx4 = Record("doll", 4789, tx3)
+#print(tx4)
+#print(leger_quickSort(tx4))
+#print(str(tx4))

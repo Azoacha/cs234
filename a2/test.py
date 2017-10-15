@@ -1,22 +1,3 @@
-# TODO: Add design recipe
-
-def delete_transaction(head_trans , m):
-    trans_lst = []
-    curr_trans = head_trans
-    while curr_trans is not None:
-        trans_lst.append(curr_trans)
-        curr_trans = curr_trans.prev_trans
-
-    # the position in the list of T_m
-    pos = len(trans_lst) - m
-    txm = trans_lst[pos]
-    txm_1 = trans_lst[pos-1]
-    merch = txm.merchandise
-
-    txm_1.prev_trans = txm.prev_trans
-    return merch
-
-
 class Record:
     def __init__(self, merchandise, time, prev):
         self.merchandise = merchandise
@@ -41,9 +22,3 @@ class Record:
         if self.prev_trans != None:
             rest_of_list = str(self.prev_trans)
         return "({},{})".format(self.merchandise, self.time) + rest_of_list
-
-
-#tx1 = Record("apple", 1580, None)
-#tx2 = Record("banana", 2390, tx1)
-#tx3 = Record("carrot", 3452, tx2)
-#tx4 = Record("doll", 3789, tx3)

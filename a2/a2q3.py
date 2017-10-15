@@ -11,9 +11,9 @@ def find_first(disordered):
     while low <= high:
         mid = 1 + (high + low)//2
         if high == low:
-            return disordered[low]
+            return disordered[low].time
         elif disordered[mid].time < disordered[mid-1].time:
-            return disordered[mid]
+            return disordered[mid].time
         elif disordered[mid].time < first_time:
             high = mid - 1
         else:
@@ -31,10 +31,10 @@ class Event:
             return self.event == other.event
         return False
 
-#lst = Array(5)
-#lst[1] = Event(256, "Nappy nap")
-#lst[0] = Event(10000, "Dancing")
-#lst[2] = Event(39000, "Study")
-#lst[3] = Event(80000, "Breakfast")
-#st[4] = Event(90000, "Woke up")
-#print(find_first(lst).event)
+# lst = Array(5)
+# lst[3] = Event(80000, "Breakfast")
+# lst[4] = Event(90000, "Woke up")
+# lst[0] = Event(100000, "Dancing")
+# lst[1] = Event(256, "Nappy nap")
+# lst[2] = Event(39000, "Study")
+# print(find_first(lst))
