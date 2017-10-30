@@ -1,5 +1,18 @@
-# TODO: Add design recipe
+##
+## ===========================================================================
+##  Azoacha Forcheh (20558994)
+##  CS 234 Fall 2017
+##  Assignment 02, Problem 1
+## ===========================================================================
+##
+##
 
+# delete_transaction(head_trans , m) deletes the mth transaction from the
+#   linked_list of records head_trans and returns the value of merch for that
+#   event
+# Effects: Mutates head_trans by deleting one of its nodes.
+# delete_trans: Record Int -> String
+# Requires: 1 <= m <= n, where n is the length of the linked list
 def delete_transaction(head_trans , m):
     trans_lst = []
     curr_trans = head_trans
@@ -41,9 +54,3 @@ class Record:
         if self.prev_trans != None:
             rest_of_list = str(self.prev_trans)
         return "({},{})".format(self.merchandise, self.time) + rest_of_list
-
-
-#tx1 = Record("apple", 1580, None)
-#tx2 = Record("banana", 2390, tx1)
-#tx3 = Record("carrot", 3452, tx2)
-#tx4 = Record("doll", 3789, tx3)

@@ -1,8 +1,19 @@
+##
+## ===========================================================================
+##  Azoacha Forcheh (20558994)
+##  CS 234 Fall 2017
+##  Assignment 02, Problem 3
+## ===========================================================================
+##
+##
+
 from myArray import Array
 
-# TODO: Add design recipe
-# TODO: Explain why this is O(log n) - use the logic behind binary searches
-
+# find_first(disordered) finds the time of the first event in the array
+#   disordered that has been split and concatenated incorrectly
+# find_first: Array -> Int
+# Requires: disordered contains a break, i.e. it was an ordered list that was
+#   split and concatenated incorrectly
 def find_first(disordered):
     low = 0
     high = len(disordered) - 1
@@ -30,11 +41,3 @@ class Event:
         if self.time == other.time:
             return self.event == other.event
         return False
-
-# lst = Array(5)
-# lst[3] = Event(80000, "Breakfast")
-# lst[4] = Event(90000, "Woke up")
-# lst[0] = Event(100000, "Dancing")
-# lst[1] = Event(256, "Nappy nap")
-# lst[2] = Event(39000, "Study")
-# print(find_first(lst))

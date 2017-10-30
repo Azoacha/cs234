@@ -1,4 +1,11 @@
-# TODO: Add design recipe
+##
+## ===========================================================================
+##  Azoacha Forcheh (20558994)
+##  CS 234 Fall 2017
+##  Assignment 02, Problem 2
+## ===========================================================================
+##
+##
 
 def swap(node1, node2):
     tmp_time = node1.time
@@ -22,9 +29,7 @@ def appears_before(node1, node2):
         curr = curr.prev_trans
     return False
 
-# Use leger_head as first and have to get end node to use as last for
-#   final call in quicksort
-# Returns node that appears before pivot
+# Partitions list as in quicksort and returns node that appears before pivot
 def partition(first, last):
     # Using last node for pivot since it has no tail nodes
     # comp_node will be ahead of every node < pivot
@@ -52,6 +57,11 @@ def recQuickSort(first, last):
         recQuickSort(first, pivot)
         recQuickSort(pivot.prev_trans, last)
 
+# leger_quicksort(leger_head) sorts a given linked list of records leger_head
+#   using the logic of quicksort and returns the head node of the newly sorted
+#   list
+# Effects: Mutates leger_head
+# leger_quickSort: Record -> Record
 def leger_quickSort(leger_head):
     # set to head and not head.prev_trans to account for empty list
     curr = leger_head
@@ -61,6 +71,7 @@ def leger_quickSort(leger_head):
         curr = curr.prev_trans
     recQuickSort(leger_head, last)
     return leger_head
+
 
 class Record:
     def __init__(self, merchandise, time, prev):
@@ -86,12 +97,3 @@ class Record:
         if self.prev_trans != None:
             rest_of_list = str(self.prev_trans)
         return "({},{})".format(self.merchandise, self.time) + rest_of_list
-
-
-#tx1 = Record("apple", 5580, None)
-#tx2 = Record("banana", 1580, tx1)
-#tx3 = Record("carrot", 3452, tx2)
-#tx4 = Record("doll", 4789, tx3)
-#print(tx4)
-#print(leger_quickSort(tx4))
-#print(str(tx4))
