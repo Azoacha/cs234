@@ -11,6 +11,7 @@ from dataStructures import PriorityQueue
 import check
 
 # TODO: add design recipe
+# TODO: Remove uses of _qList
 
 # Implementation of the Stack ADT using a Priority Queue.
 class Stack:
@@ -25,20 +26,23 @@ class Stack:
 
     def peek(self):
         assert not self.isEmpty(), "Cannot peek at an empty stack"
-        return self._theItems._qList[-1].item
+        val = 0
+        n = len(self._theItems)
+        for i in range(n):
+            # pop and push to end
+            val = self._theItems.dequeue()
+            self.push(val)
+        return val
 
     def pop(self):
         assert not self.isEmpty(), "Cannot pop from an empty stack"
         last = self._theItems.dequeue()
-        # Last item in list should have the highest priority
-        self._theItems._qList[-1].priority = 0
         return last
 
     def push(self, item):
         # Last item in list should have the highest priority
-        if not self.isEmpty():
-            self._theItems._qList[-1].priority = 1
-        self._theItems.enqueue(item, 0)
+        priority = len(self) * -1
+        self._theItems.enqueue(item, priority)
 
 # Test 1: Normal use case
 s = Stack()

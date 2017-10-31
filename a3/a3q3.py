@@ -6,6 +6,7 @@
 ## ===========================================================================
 ##
 ##
+
 import check
 
 # DONE: Need to account for numbers >= 10
@@ -28,7 +29,12 @@ def decompressFile(txt):
         if chr.isalpha():
             decomp += chr
 
+        # need to recurse over number of open and closed brackets
         if chr.isdigit():
+            # number of brackets seen
+            open = 1
+            closed = 0
+
             rep = ""
             pattern = ""
 

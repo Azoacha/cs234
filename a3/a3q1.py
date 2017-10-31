@@ -25,11 +25,20 @@ class Stack:
 
     def peek(self):
         assert not self.isEmpty(), "Cannot peek at an empty stack"
-        return self._theItems._qList[-1]
+        val = 0
+        n = len(self._theItems)
+        for i in range(n):
+            # pop and push to end
+            val = self._theItems.dequeue()
+            self.push(val)
+        return val
 
     def pop(self):
         assert not self.isEmpty(), "Cannot pop from an empty stack"
-        return self._theItems._qList.pop(-1)
+        k = len(self._theItems) - 1
+        for i in range(k):
+            self.push(self._theItems.dequeue())
+        return self._theItems.dequeue()
 
     def push(self, item):
         self._theItems.enqueue(item)
